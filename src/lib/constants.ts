@@ -90,6 +90,67 @@ export const typeScale = {
  */
 export const site = {
   name: "HustleFreeHire Staffing Services",
+  shortName: "HustleFreeHire",
   tagline: "Connecting Right People with the Right Jobs",
   url: "https://www.hustlefreehire.com",
 } as const;
+
+/**
+ * Contact channels — placeholders until real numbers/emails are provided.
+ * Update these values when the production details are confirmed.
+ */
+export const contact = {
+  email: "hello@hustlefreehire.com",
+  phone: "+91-00000-00000",
+  whatsapp: "https://wa.me/910000000000",
+  city: "Ludhiana, Punjab, India",
+} as const;
+
+/**
+ * Primary navigation (blueprint §7).
+ *
+ * Each link can optionally declare `children` — used to surface the
+ * Services mega-dropdown on desktop and an expandable group on mobile.
+ */
+export type ServiceLink = {
+  label: string;
+  href: string;
+  /** Lucide icon name, resolved by the consuming component. */
+  icon: "briefcase" | "user-check" | "users";
+  description: string;
+};
+
+export type NavLink = {
+  label: string;
+  href: string;
+  children?: ReadonlyArray<ServiceLink>;
+};
+
+export const serviceLinks: ReadonlyArray<ServiceLink> = [
+  {
+    label: "Contract Staffing",
+    href: "/services/contract-staffing",
+    icon: "briefcase",
+    description: "Payroll-managed, scalable contract talent.",
+  },
+  {
+    label: "Permanent Staffing",
+    href: "/services/permanent-staffing",
+    icon: "user-check",
+    description: "End-to-end search for full-time roles.",
+  },
+  {
+    label: "Bulk Hiring",
+    href: "/services/bulk-hiring",
+    icon: "users",
+    description: "Mass recruitment across regions and shifts.",
+  },
+] as const;
+
+export const navLinks: ReadonlyArray<NavLink> = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services", children: serviceLinks },
+  { label: "Industries", href: "/industries" },
+  { label: "Contact", href: "/contact" },
+] as const;
