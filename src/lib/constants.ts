@@ -114,10 +114,15 @@ export const contact = {
  */
 export type ServiceLink = {
   label: string;
+  /** Tag-line under the service name on cards and hero banners. */
+  subtitle: string;
   href: string;
   /** Lucide icon name, resolved by the consuming component. */
   icon: "briefcase" | "user-check" | "users";
+  /** Short blurb used in the navbar dropdown. */
   description: string;
+  /** Card-length copy used on the home page Services section. */
+  cardCopy: string;
 };
 
 export type NavLink = {
@@ -129,21 +134,30 @@ export type NavLink = {
 export const serviceLinks: ReadonlyArray<ServiceLink> = [
   {
     label: "Contract Staffing",
+    subtitle: "Payroll Management",
     href: "/services/contract-staffing",
     icon: "briefcase",
     description: "Payroll-managed, scalable contract talent.",
+    cardCopy:
+      "Scalable contract talent with end-to-end payroll, compliance, and lifecycle management — so you focus on growth, not paperwork.",
   },
   {
     label: "Permanent Staffing",
+    subtitle: "One-Time Placement",
     href: "/services/permanent-staffing",
     icon: "user-check",
     description: "End-to-end search for full-time roles.",
+    cardCopy:
+      "Targeted search for full-time roles. We surface culture-fit, role-fit candidates so you hire once and hire right.",
   },
   {
     label: "Bulk Hiring",
+    subtitle: "Mass Recruitment",
     href: "/services/bulk-hiring",
     icon: "users",
     description: "Mass recruitment across regions and shifts.",
+    cardCopy:
+      "Multi-region, multi-shift hiring at scale — on-demand workforce delivery for high-volume operational roles.",
   },
 ] as const;
 
