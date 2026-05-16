@@ -19,15 +19,16 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 /**
  * Navbar — sticky top, blur-backdrop on scroll (blueprint §8.1, §9, §10).
  *
- * Behavior:
- *   • Transparent on the off-white page bg above the fold.
- *   • Once the user scrolls past 12px, a frosted white surface
- *     appears with a subtle border + shadow.
- *   • Each link has a teal underline that slides in from left
- *     on hover (width: 0 → 100%) — blueprint §10.
- *   • Services is a click-to-open dropdown on desktop, an
- *     expandable group inside MobileMenu on mobile.
- *   • Active route gets the underline persistently.
+ * Two visual states:
+ *   • At top of page (scrollY ≤ 12px): transparent surface with
+ *     LIGHT text — sits in front of dark heroes.
+ *   • Scrolled: frosted-white surface with DARK text + subtle
+ *     border and 2px ambient shadow.
+ *
+ * Each link has a teal underline that slides in from left on hover
+ * (width: 0 → 100%). Active route gets the underline persistently.
+ * Services is a click/hover dropdown on desktop, an expandable
+ * group inside MobileMenu on mobile.
  */
 
 const iconMap: Record<ServiceLink["icon"], React.ComponentType<{ className?: string; size?: number }>> = {
@@ -40,20 +41,27 @@ function NavUnderlineLink({
   href,
   label,
   active,
+  overDark,
 }: {
   href: string;
   label: string;
   active: boolean;
+  overDark: boolean;
 }) {
+  const base = overDark
+    ? "text-white/80 hover:text-white"
+    : "text-text-secondary hover:text-text-primary";
   return (
     <Link
       href={href}
-      className="group relative inline-flex items-center px-1 py-2 text-sm font-sans font-medium text-text-secondary transition-colors hover:text-text-primary"
+      className={`group relative inline-flex items-center px-1 py-2 text-sm font-sans font-medium transition-colors ${base}`}
     >
       <span>{label}</span>
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] rounded-full bg-primary transition-all duration-300 ease-spring ${
+        className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] rounded-full ${
+          overDark ? "bg-accent" : "bg-primary"
+        } transition-all duration-300 ease-spring ${
           active ? "w-full" : "w-0 group-hover:w-full"
         }`}
       />
@@ -63,8 +71,10 @@ function NavUnderlineLink({
 
 function ServicesDropdown({
   active,
+  overDark,
 }: {
   active: boolean;
+  overDark: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -92,6 +102,11 @@ function ServicesDropdown({
     };
   }, [open]);
 
+  const triggerBase = overDark
+    ? "text-white/80 hover:text-white"
+    : "text-text-secondary hover:text-text-primary";
+  const underlineColor = overDark ? "bg-accent" : "bg-primary";
+
   return (
     <div
       ref={containerRef}
@@ -104,7 +119,7 @@ function ServicesDropdown({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="group relative inline-flex items-center gap-1 px-1 py-2 text-sm font-sans font-medium text-text-secondary transition-colors hover:text-text-primary"
+        className={`group relative inline-flex items-center gap-1 px-1 py-2 text-sm font-sans font-medium transition-colors ${triggerBase}`}
       >
         <span>Services</span>
         <ChevronDown
@@ -113,7 +128,7 @@ function ServicesDropdown({
         />
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] rounded-full bg-primary transition-all duration-300 ease-spring ${
+          className={`pointer-events-none absolute -bottom-0.5 left-0 h-[2px] rounded-full ${underlineColor} transition-all duration-300 ease-spring ${
             active || open ? "w-[calc(100%-18px)]" : "w-0 group-hover:w-[calc(100%-18px)]"
           }`}
         />
@@ -189,6 +204,8 @@ export function Navbar() {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
+  const overDark = !scrolled;
+
   return (
     <>
       <header
@@ -199,8 +216,8 @@ export function Navbar() {
         }`}
       >
         <div className="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between px-6 md:px-10">
-          {/* Logo */}
-          <Logo />
+          {/* Logo flips inverted state with the navbar theme */}
+          <Logo inverted={overDark} />
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-8 lg:flex">
@@ -210,6 +227,7 @@ export function Navbar() {
                   <ServicesDropdown
                     key={link.href}
                     active={isActive(link.href)}
+                    overDark={overDark}
                   />
                 );
               }
@@ -219,6 +237,7 @@ export function Navbar() {
                   href={link.href}
                   label={link.label}
                   active={isActive(link.href)}
+                  overDark={overDark}
                 />
               );
             })}
@@ -238,7 +257,11 @@ export function Navbar() {
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
-              className="flex h-11 w-11 items-center justify-center rounded-pill text-text-secondary transition-colors hover:bg-bg-section hover:text-primary lg:hidden"
+              className={`flex h-11 w-11 items-center justify-center rounded-pill transition-colors lg:hidden ${
+                overDark
+                  ? "text-white/85 hover:bg-white/10 hover:text-white"
+                  : "text-text-secondary hover:bg-bg-section hover:text-primary"
+              }`}
             >
               <Menu size={22} />
             </button>
