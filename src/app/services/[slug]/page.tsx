@@ -21,6 +21,12 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { Accordion } from "@/components/ui/Accordion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serviceJsonLd,
+} from "@/lib/seo";
 import {
   serviceLinks,
   site,
@@ -51,10 +57,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const service = findService(slug);
-  if (!service) return { title: `Services — ${site.name}` };
+  if (!service) return { title: "Services" };
   return {
-    title: `${service.label} — ${site.name}`,
+    title: service.label,
     description: service.longDescription,
+    alternates: { canonical: service.href },
+    openGraph: {
+      title: `${service.label} — ${site.name}`,
+      description: service.longDescription,
+      url: service.href,
+      type: "website",
+    },
   };
 }
 
@@ -125,6 +138,16 @@ export default async function ServiceDetailPage({
       <ProcessSection />
       <FAQ service={service} />
       <CTABanner />
+
+      <JsonLd data={serviceJsonLd(service)} />
+      <JsonLd data={faqJsonLd(service.faq)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: service.label, href: service.href },
+        ])}
+      />
     </>
   );
 }

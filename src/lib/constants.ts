@@ -96,6 +96,14 @@ export const site = {
 } as const;
 
 /**
+ * Resolved canonical site URL. Reads from NEXT_PUBLIC_SITE_URL when
+ * set (so preview deployments can override) and falls back to the
+ * production domain. Used by metadata, sitemap, robots, and JSON-LD.
+ */
+export const SITE_URL: string =
+  process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+
+/**
  * Contact channels — placeholders until real numbers/emails are provided.
  * Update these values when the production details are confirmed.
  */

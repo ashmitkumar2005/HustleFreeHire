@@ -14,16 +14,31 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { PageHero } from "@/components/sections/PageHero";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  breadcrumbJsonLd,
+  serviceJsonLd,
+  webPageJsonLd,
+} from "@/lib/seo";
 import {
   serviceLinks,
   site,
   type ServiceLink,
 } from "@/lib/constants";
 
+const PAGE_DESC =
+  "Three staffing models built for modern hiring: contract, permanent, and bulk. Compare and pick the right partnership.";
+
 export const metadata: Metadata = {
-  title: `Services — ${site.name}`,
-  description:
-    "Three staffing models built for modern hiring: contract, permanent, and bulk. Compare and pick the right partnership.",
+  title: "Services",
+  description: PAGE_DESC,
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: `Services — ${site.name}`,
+    description: PAGE_DESC,
+    url: "/services",
+    type: "website",
+  },
 };
 
 const iconMap: Record<ServiceLink["icon"], LucideIcon> = {
@@ -70,6 +85,23 @@ export default function ServicesPage() {
       <ProcessSection />
 
       <CTABanner />
+
+      <JsonLd
+        data={webPageJsonLd({
+          url: "/services",
+          name: `Services — ${site.name}`,
+          description: PAGE_DESC,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+        ])}
+      />
+      {serviceLinks.map((s) => (
+        <JsonLd key={s.href} data={serviceJsonLd(s)} />
+      ))}
     </>
   );
 }

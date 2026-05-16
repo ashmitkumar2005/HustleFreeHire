@@ -15,12 +15,23 @@ import {
 import { CTABanner } from "@/components/sections/CTABanner";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/constants";
 
+const PAGE_DESC =
+  "We connect organizations with the right talent through streamlined recruitment and scalable staffing solutions. Learn what HustleFreeHire stands for.";
+
 export const metadata: Metadata = {
-  title: `About — ${site.name}`,
-  description:
-    "We connect organizations with the right talent through streamlined recruitment and scalable staffing solutions. Learn what HustleFreeHire stands for.",
+  title: "About",
+  description: PAGE_DESC,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: `About — ${site.name}`,
+    description: PAGE_DESC,
+    url: "/about",
+    type: "website",
+  },
 };
 
 /**
@@ -63,6 +74,20 @@ export default function AboutPage() {
       <OurVision />
       <WhyWorkWithUs />
       <CTABanner />
+
+      <JsonLd
+        data={webPageJsonLd({
+          url: "/about",
+          name: `About — ${site.name}`,
+          description: PAGE_DESC,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+        ])}
+      />
     </>
   );
 }

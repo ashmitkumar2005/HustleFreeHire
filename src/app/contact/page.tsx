@@ -8,12 +8,23 @@ import {
 } from "lucide-react";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/sections/PageHero";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { contact, site } from "@/lib/constants";
 
+const PAGE_DESC =
+  "Tell us about your hiring needs. We respond within 24 business hours, or chat with us directly on WhatsApp.";
+
 export const metadata: Metadata = {
-  title: `Contact — ${site.name}`,
-  description:
-    "Tell us about your hiring needs. We respond within 24 business hours, or chat with us directly on WhatsApp.",
+  title: "Contact",
+  description: PAGE_DESC,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: `Contact — ${site.name}`,
+    description: PAGE_DESC,
+    url: "/contact",
+    type: "website",
+  },
 };
 
 /**
@@ -41,6 +52,22 @@ export default function ContactPage() {
 
       <ContactBody />
       <QuickResponsePromise />
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: `Contact — ${site.name}`,
+          description: PAGE_DESC,
+          url: `${site.url}/contact`,
+        }}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Contact", href: "/contact" },
+        ])}
+      />
     </>
   );
 }

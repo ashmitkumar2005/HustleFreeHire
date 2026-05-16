@@ -6,6 +6,8 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { StatBand } from "@/components/sections/StatBand";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 /**
  * Home page (`/`).
@@ -23,6 +25,10 @@ export default function Home() {
       <ProcessSection />
       <LogoMarquee />
       <CTABanner />
+
+      <JsonLd
+        data={breadcrumbJsonLd([{ label: "Home", href: "/" }])}
+      />
     </>
   );
 }

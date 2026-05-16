@@ -20,16 +20,27 @@ import {
 import { CTABanner } from "@/components/sections/CTABanner";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import {
   industries,
   site,
   type IndustryKey,
 } from "@/lib/constants";
 
+const PAGE_DESC =
+  "Specialist staffing across 10+ sectors — manufacturing, automobile, pharma, construction, logistics, IT, telecom, banking, BPO, and advertising.";
+
 export const metadata: Metadata = {
-  title: `Industries — ${site.name}`,
-  description:
-    "Specialist staffing across 10+ sectors — manufacturing, automobile, pharma, construction, logistics, IT, telecom, banking, BPO, and advertising.",
+  title: "Industries",
+  description: PAGE_DESC,
+  alternates: { canonical: "/industries" },
+  openGraph: {
+    title: `Industries — ${site.name}`,
+    description: PAGE_DESC,
+    url: "/industries",
+    type: "website",
+  },
 };
 
 const iconMap: Record<IndustryKey, LucideIcon> = {
@@ -72,6 +83,20 @@ export default function IndustriesPage() {
       <IndustryGrid />
       <ExpertiseNote />
       <CTABanner />
+
+      <JsonLd
+        data={webPageJsonLd({
+          url: "/industries",
+          name: `Industries — ${site.name}`,
+          description: PAGE_DESC,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Industries", href: "/industries" },
+        ])}
+      />
     </>
   );
 }
