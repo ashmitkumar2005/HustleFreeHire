@@ -154,3 +154,28 @@ export const navLinks: ReadonlyArray<NavLink> = [
   { label: "Industries", href: "/industries" },
   { label: "Contact", href: "/contact" },
 ] as const;
+
+/**
+ * Social links — placeholder URLs. Replace with real accounts when ready.
+ * `kind` maps to a Lucide icon name in the footer component.
+ */
+export type SocialKind = "linkedin" | "twitter" | "instagram" | "facebook";
+
+export const socials: ReadonlyArray<{
+  kind: SocialKind;
+  label: string;
+  href: string;
+}> = [
+  { kind: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/" },
+  { kind: "twitter", label: "X / Twitter", href: "https://x.com/" },
+  { kind: "instagram", label: "Instagram", href: "https://www.instagram.com/" },
+  { kind: "facebook", label: "Facebook", href: "https://www.facebook.com/" },
+] as const;
+
+/**
+ * Legal pages — slugs match blueprint §7.
+ */
+export const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+] as const;
