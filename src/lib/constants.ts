@@ -193,3 +193,91 @@ export const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms-of-service" },
 ] as const;
+
+/**
+ * Industries served (blueprint §8.1 Section 6, §8.4).
+ *
+ * Order matches the blueprint copy. `iconKey` is resolved to a Lucide
+ * icon by the consuming component so this module stays free of JSX.
+ */
+export type IndustryKey =
+  | "manufacturing"
+  | "automobile"
+  | "pharmaceuticals"
+  | "construction"
+  | "logistics"
+  | "it-non-it"
+  | "telecom"
+  | "banking"
+  | "bpo"
+  | "advertising";
+
+export type Industry = {
+  key: IndustryKey;
+  label: string;
+  /** Used on the dedicated Industries page (blueprint §8.4). */
+  blurb: string;
+};
+
+export const industries: ReadonlyArray<Industry> = [
+  {
+    key: "manufacturing",
+    label: "Manufacturing",
+    blurb:
+      "Plant operators, supervisors, quality, and skilled-trade roles staffed at speed.",
+  },
+  {
+    key: "automobile",
+    label: "Automobile Engineering",
+    blurb:
+      "Design, manufacturing, and service technicians for OEMs and tier-1/2 suppliers.",
+  },
+  {
+    key: "pharmaceuticals",
+    label: "Pharmaceuticals",
+    blurb:
+      "GMP-aware production, R&D, regulatory, and field-force placements.",
+  },
+  {
+    key: "construction",
+    label: "Construction",
+    blurb:
+      "Site engineers, project managers, and skilled labour for infrastructure builds.",
+  },
+  {
+    key: "logistics",
+    label: "Logistics",
+    blurb:
+      "Warehouse leadership, last-mile staffing, and fleet operations roles at scale.",
+  },
+  {
+    key: "it-non-it",
+    label: "IT & Non-IT",
+    blurb:
+      "Tech and corporate-function hiring across product, engineering, and operations.",
+  },
+  {
+    key: "telecom",
+    label: "Telecom",
+    blurb:
+      "Network engineering, field operations, and customer-experience roles pan-India.",
+  },
+  {
+    key: "banking",
+    label: "Banking",
+    blurb:
+      "Retail banking, NBFC, and back-office talent with compliance-grade vetting.",
+  },
+  {
+    key: "bpo",
+    label: "BPO",
+    blurb:
+      "Voice and non-voice teams ramped quickly with multi-shift coverage.",
+  },
+  {
+    key: "advertising",
+    label: "Advertising",
+    blurb:
+      "Creative, account, and digital-media roles across agencies and in-house teams.",
+  },
+] as const;
