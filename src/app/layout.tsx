@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 /**
  * Inter — body, UI labels, captions.
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
