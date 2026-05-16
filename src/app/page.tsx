@@ -1,5 +1,7 @@
+import { CTABanner } from "@/components/sections/CTABanner";
 import { HeroMain } from "@/components/sections/HeroMain";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
+import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { StatBand } from "@/components/sections/StatBand";
@@ -8,8 +10,7 @@ import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 /**
  * Home page (`/`).
  *
- * Sections are mounted in blueprint §8.1 order. Logo marquee and
- * CTA Banner come next.
+ * Section flow per blueprint §8.1.
  */
 export default function Home() {
   return (
@@ -20,6 +21,8 @@ export default function Home() {
       <WhyChooseUs />
       <IndustriesSection />
       <ProcessSection />
+      <LogoMarquee />
+      <CTABanner />
     </>
   );
 }

@@ -82,6 +82,21 @@
 
   /* ---------- Easing (blueprint §10) ---------- */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------- Animation tokens ---------- */
+  --animate-marquee: marquee 35s linear infinite;
+}
+
+/* Marquee keyframes — used by the client/partner logo strip
+   (blueprint §8.1 Section 8). Translates a 200%-wide track by -50%
+   so the duplicated content loops seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 /* ============================================================
