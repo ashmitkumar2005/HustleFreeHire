@@ -32,15 +32,15 @@ const sora = Sora({
 });
 
 const DEFAULT_TITLE =
-  "HustleFreeHire Staffing Services | Recruitment & Staffing Agency India";
+  "SH StaffHunt LLP | Recruitment & Staffing Agency India";
 const DEFAULT_DESC =
-  "HustleFreeHire connects businesses with top talent through contract staffing, permanent placement, and bulk hiring solutions across India.";
+  "SH StaffHunt connects businesses with top talent through contract staffing, permanent placement, and bulk hiring solutions across India.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: DEFAULT_TITLE,
-    template: "%s — HustleFreeHire",
+    template: "%s — SH StaffHunt",
   },
   description: DEFAULT_DESC,
   applicationName: site.name,
@@ -59,6 +59,8 @@ export const metadata: Metadata = {
     "IT staffing agency India",
     "BPO recruitment",
     "pharma staffing",
+    "SH StaffHunt",
+    "StaffHunt LLP",
   ],
   alternates: {
     canonical: "/",

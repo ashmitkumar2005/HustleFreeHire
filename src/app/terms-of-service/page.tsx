@@ -5,7 +5,7 @@ import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { contact, site } from "@/lib/constants";
 
 const PAGE_DESC =
-  "The terms that govern use of this website and the services HustleFreeHire provides.";
+  "The terms that govern use of this website and the services SH StaffHunt provides.";
 
 export const metadata: Metadata = {
   title: "Terms of Service",

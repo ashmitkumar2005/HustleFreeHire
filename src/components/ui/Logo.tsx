@@ -2,15 +2,12 @@ import Link from "next/link";
 import { site } from "@/lib/constants";
 
 /**
- * HFH monogram + wordmark.
+ * SH StaffHunt monogram + wordmark.
  *
- * Blueprint §3: "Wordmark + icon monogram (initials 'HFH' in geometric form).
- * Navbar: Icon left + 'HustleFreeHire' wordmark, 'Staffing Services' in
- * lighter weight below."
- *
- * The mark is a soft-cornered teal tile with three vertical strokes that read
- * as "H | F | H" — a geometric reduction of the brand initials. Pure inline
- * SVG, zero asset dependency, scales cleanly to favicon size.
+ * The mark is a soft-cornered teal tile with a bold "SH" monogram.
+ * This is a placeholder — the final logo asset will be dropped in by
+ * the brand team. The component contract (size, inverted, compact)
+ * stays stable so swapping the SVG paths later won't ripple.
  */
 export function LogoMark({
   size = 36,
@@ -30,27 +27,29 @@ export function LogoMark({
       className={className}
     >
       <defs>
-        <linearGradient id="hfh-mark-grad" x1="0" y1="0" x2="40" y2="40">
+        <linearGradient id="sh-mark-grad" x1="0" y1="0" x2="40" y2="40">
           <stop offset="0%" stopColor="#0F9D94" />
           <stop offset="100%" stopColor="#0A7A72" />
         </linearGradient>
       </defs>
       {/* Soft-cornered tile */}
-      <rect width="40" height="40" rx="10" fill="url(#hfh-mark-grad)" />
-      {/* Left H stem */}
-      <rect x="8" y="11" width="3" height="18" rx="1.2" fill="#FFFFFF" />
-      {/* H crossbar (left) */}
-      <rect x="8" y="18.5" width="9" height="3" rx="1.2" fill="#FFFFFF" />
-      {/* Right H stem (left) */}
-      <rect x="14" y="11" width="3" height="18" rx="1.2" fill="#FFFFFF" />
-      {/* F middle stem */}
-      <rect x="20" y="11" width="3" height="18" rx="1.2" fill="#A8EDE8" />
-      <rect x="20" y="11" width="8" height="3" rx="1.2" fill="#A8EDE8" />
-      <rect x="20" y="18.5" width="6" height="3" rx="1.2" fill="#A8EDE8" />
-      {/* Right H */}
-      <rect x="29" y="11" width="3" height="18" rx="1.2" fill="#FFFFFF" />
-      <rect x="29" y="18.5" width="9" height="3" rx="1.2" fill="#FFFFFF" />
-      <rect x="35" y="11" width="3" height="18" rx="1.2" fill="#FFFFFF" />
+      <rect width="40" height="40" rx="10" fill="url(#sh-mark-grad)" />
+      {/* SH monogram — keep cross-platform by stacking generic display
+          fallbacks; the brand will replace this with a vector asset. */}
+      <text
+        x="20"
+        y="27.5"
+        textAnchor="middle"
+        fontFamily="'Sora', ui-sans-serif, system-ui, -apple-system, sans-serif"
+        fontWeight="800"
+        fontSize="18"
+        letterSpacing="-0.5"
+        fill="#FFFFFF"
+      >
+        SH
+      </text>
+      {/* Subtle accent dot — a small premium detail */}
+      <circle cx="32" cy="9" r="1.6" fill="#A8EDE8" />
     </svg>
   );
 }

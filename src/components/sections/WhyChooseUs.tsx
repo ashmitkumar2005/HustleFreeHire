@@ -88,7 +88,7 @@ export function WhyChooseUs() {
         >
           <motion.div variants={FADE_UP}>
             <SectionHeading
-              tag="Why HustleFreeHire"
+              tag="Why SH StaffHunt"
               inverted
               title={
                 <>

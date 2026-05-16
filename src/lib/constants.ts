@@ -89,10 +89,10 @@ export const typeScale = {
  * Site-wide constants. These will grow as we build pages.
  */
 export const site = {
-  name: "HustleFreeHire Staffing Services",
-  shortName: "HustleFreeHire",
+  name: "SH StaffHunt LLP",
+  shortName: "SH StaffHunt",
   tagline: "Connecting Right People with the Right Jobs",
-  url: "https://www.hustlefreehire.com",
+  url: "https://www.shstaffhuntllp.com",
 } as const;
 
 /**
@@ -108,7 +108,7 @@ export const SITE_URL: string =
  * Update these values when the production details are confirmed.
  */
 export const contact = {
-  email: "hello@hustlefreehire.com",
+  email: "hello@shstaffhuntllp.com",
   phone: "+91-00000-00000",
   whatsapp: "https://wa.me/910000000000",
   city: "Ludhiana, Punjab, India",
@@ -176,7 +176,7 @@ export const serviceLinks: ReadonlyArray<ServiceLink> = [
     cardCopy:
       "Scalable contract talent with end-to-end payroll, compliance, and lifecycle management — so you focus on growth, not paperwork.",
     longDescription:
-      "Hire on contract terms while HustleFreeHire owns the entire employment lifecycle. We surface the talent, manage statutory compliance, run payroll, and stay accountable through the contract — so you get specialist capacity without the overhead of permanent hiring.",
+      "Hire on contract terms while SH StaffHunt owns the entire employment lifecycle. We surface the talent, manage statutory compliance, run payroll, and stay accountable through the contract — so you get specialist capacity without the overhead of permanent hiring.",
     keyBenefits: [
       {
         iconKey: "shield-check",

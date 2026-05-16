@@ -20,7 +20,7 @@ import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/constants";
 
 const PAGE_DESC =
-  "We connect organizations with the right talent through streamlined recruitment and scalable staffing solutions. Learn what HustleFreeHire stands for.";
+  "We connect organizations with the right talent through streamlined recruitment and scalable staffing solutions. Learn what SH StaffHunt stands for.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -64,7 +64,7 @@ export default function AboutPage() {
             </span>
           </>
         }
-        subtitle="HustleFreeHire is a recruitment and staffing partner built around a simple promise — hiring without the hustle. Here's what we stand for and how we work."
+        subtitle="SH StaffHunt is a recruitment and staffing partner built around a simple promise — hiring without the hustle. Here's what we stand for and how we work."
       />
 
       <MissionStatement />
@@ -122,7 +122,7 @@ function MissionStatement() {
             depth, and lifecycle ownership in equal measure.”
           </blockquote>
           <footer className="mt-6 text-sm text-text-secondary">
-            — The HustleFreeHire team
+            — The SH StaffHunt team
           </footer>
         </div>
       </div>
@@ -150,10 +150,10 @@ function WhoWeAre() {
         </div>
         <div className="lg:col-span-7 space-y-5 text-body-lg text-text-secondary">
           <p id="who-we-are-heading">
-            HustleFreeHire Staffing Services focuses on enhancing workforce
-            performance by connecting organizations with the right talent and
-            efficient HR solutions. We streamline recruitment processes,
-            support businesses with scalable staffing solutions, and help
+            SH StaffHunt LLP focuses on enhancing workforce performance by
+            connecting organizations with the right talent and efficient HR
+            solutions. We streamline recruitment processes, support
+            businesses with scalable staffing solutions, and help
             professionals find meaningful career opportunities.
           </p>
           <p>

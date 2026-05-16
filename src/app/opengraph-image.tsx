@@ -6,7 +6,7 @@ import { ImageResponse } from "next/og";
  * time as a 1200×630 PNG via next/og.
  */
 export const alt =
-  "HustleFreeHire Staffing Services — Building Reliable Workforce Solutions";
+  "SH StaffHunt LLP — Building Reliable Workforce Solutions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,11 +44,11 @@ export default async function OGImage() {
               letterSpacing: -1,
             }}
           >
-            HFH
+            SH
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.5 }}>
-              HustleFreeHire
+              SH StaffHunt
             </span>
             <span style={{ fontSize: 16, color: "rgba(168,237,232,0.8)" }}>
               Staffing Services

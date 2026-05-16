@@ -5,7 +5,7 @@ import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { contact, site } from "@/lib/constants";
 
 const PAGE_DESC =
-  "How HustleFreeHire collects, uses, and protects information from website visitors and applicants.";
+  "How SH StaffHunt collects, uses, and protects information from website visitors and applicants.";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
