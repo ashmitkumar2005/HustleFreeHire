@@ -1,14 +1,14 @@
 import { HeroMain } from "@/components/sections/HeroMain";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { StatBand } from "@/components/sections/StatBand";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 
 /**
  * Home page (`/`).
  *
- * Sections are mounted in blueprint §8.1 order.
- * Steps 5–7 ship Hero, StatBand, Services. The remaining homepage
- * sections (About snippet, Why Choose Us, Industries, Process, Logo
- * marquee, CTA Banner) ship in step 8.
+ * Sections are mounted in blueprint §8.1 order. Steps 5–8 (in
+ * progress) ship the home flow. Industries, Process, Logo marquee,
+ * and CTA Banner come next.
  */
 export default function Home() {
   return (
@@ -16,6 +16,7 @@ export default function Home() {
       <HeroMain />
       <StatBand />
       <ServicesSection />
+      <WhyChooseUs />
     </>
   );
 }
