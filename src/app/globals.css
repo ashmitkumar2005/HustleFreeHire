@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================================
+ * HustleFreeHire — Design Tokens
+ * Source of truth: HustleFreeHire_Website_Blueprint.md §4, §5, §6
+ *
+ * Tailwind v4 expression of the blueprint's Tailwind v3 spec.
+ * Token names mirror the blueprint exactly so a search for
+ * "color-primary" or "text-h1" maps 1:1 between docs and code.
+ * ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ---------- Brand ---------- */
+  --color-primary: #0f9d94; /* Teal — primary actions, links */
+  --color-primary-dark: #0a7a72; /* Hover state for primary */
+  --color-accent: #53d8c9; /* Aqua — highlights, gradients */
+  --color-accent-light: #a8ede8; /* Light aqua — backgrounds, tints */
+
+  /* ---------- Surfaces ---------- */
+  --color-bg: #f8fbfb; /* Off-white background */
+  --color-bg-section: #eef6f6; /* Alternate section background */
+  --color-surface: #ffffff; /* Cards, modals */
+  --color-border: #d6eceb; /* Subtle dividers */
+
+  /* ---------- Text ---------- */
+  --color-text-primary: #1e293b; /* Dark slate — headings */
+  --color-text-secondary: #475569; /* Mid slate — body text */
+  --color-text-muted: #94a3b8; /* Light — captions, labels */
+
+  /* ---------- Semantic ---------- */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* ---------- Fonts ---------- *
+   * font-sans → Inter   (body, UI)
+   * font-display → Sora (headings, stats)
+   */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+
+  /* ---------- Type Scale (blueprint §4) ---------- */
+  --text-display: 72px;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-h1: 52px;
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.018em;
+
+  --text-h2: 38px;
+  --text-h2--line-height: 1.25;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: 26px;
+  --text-h3--line-height: 1.35;
+
+  --text-h4: 20px;
+  --text-h4--line-height: 1.45;
+
+  --text-body-lg: 17px;
+  --text-body-lg--line-height: 1.7;
+
+  --text-body: 15px;
+  --text-body--line-height: 1.7;
+
+  --text-sm: 13px;
+  --text-sm--line-height: 1.6;
+
+  --text-xs: 11px;
+  --text-xs--line-height: 1.5;
+
+  /* ---------- Radii (blueprint §6) ---------- */
+  --radius-card: 16px;
+  --radius-input: 8px;
+  --radius-pill: 999px;
+
+  /* ---------- Elevation (blueprint §6, §20) ---------- */
+  --shadow-card: 0 4px 24px rgba(15, 157, 148, 0.08);
+  --shadow-card-hover: 0 12px 40px rgba(15, 157, 148, 0.16);
+  --shadow-cta: 0 8px 24px rgba(15, 157, 148, 0.24);
+
+  /* ---------- Easing (blueprint §10) ---------- */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+ * Gradients (blueprint §5)
+ *
+ * Not part of Tailwind's token system — exposed as plain CSS
+ * variables for use via inline style or arbitrary utilities:
+ *   <div style={{ backgroundImage: 'var(--gradient-hero)' }} />
+ *   <div className="bg-[image:var(--gradient-hero)]" />
+ * ============================================================ */
+:root {
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0f9d94 0%,
+    #0d7377 50%,
+    #1e293b 100%
+  );
+  --gradient-card: linear-gradient(135deg, #f0fafa 0%, #ffffff 100%);
+  --gradient-cta: linear-gradient(90deg, #0f9d94 0%, #53d8c9 100%);
+  --gradient-section: linear-gradient(180deg, #f8fbfb 0%, #eef6f6 100%);
+
+  /* Footer dark anchor (blueprint §8.1 §10 footer + §20.9) */
+  --color-footer-bg: #0f2020;
 }
 
+/* ============================================================
+ * Base styles
+ * ============================================================ */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+}
+
+/* Headings inherit the display family. Use `font-display` utility
+   on individual headings for explicit control where needed. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+}
+
+/* Selection uses brand aqua — small detail, premium feel. */
+::selection {
+  background: var(--color-accent-light);
+  color: var(--color-text-primary);
+}
+
+/* ============================================================
+ * Reduced motion (blueprint §10)
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
